@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Home
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<%- include('adminHeader.ejs')  %>
+        <div class="model">
+            <form method="POST" action="/thisIsACustomRoute/createBlog">
+                <h1>Create A new Blog</h1>
+                <input placeholder="Enter Title" type="text" name="Title" autofocus>
+                <input placeholder="Enter Description" type="text" name="Description">
+                <input placeholder="Enter Heading" type="text" name="Heading" required>
+                <input placeholder="Enter Image Link" type="text" name="ImgLink">
+                <input placeholder="Enter Image Alt text" type="text" name="ImgAltText">
+                <input type="date" name="Date">
+                <textarea placeholder="Enter Your Blog Content" name="Content"></textarea>
+                <span>
+                    Note : Enter <code> &lt;p&gt;&lt;/p&gt;</code> for Next paragraph.
+                </span>
+                <button type="submit">
+                    Create Blog
+                </button>
+            </form>
+        </div>
+        <
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%= blog.Title %>
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%- include ('header.ejs') %>
+
+<div class="line">
+</div>
+<div id="blogBox" class="container">
+    <div class="row titleHeading">
+            <h1><%= blog.Heading %></h1>
+
+            <span>  by <b>DK JAIN</b></span>
+        <img src="<%= blog.ImgLink %>" alt="<%= blog.ImgAltText %>">
+    </div>
+    <div class="row">
+        <div class="col-8 col-sm-12 blogContentArea">
+            <p>
+                <%- blog.Content %>
+            </p>
+            
+            <div class="line"></div>
+            <div class="blogComments">
+                <h1>Comments</h1>
+
+                <!-- for loop starts here -->
+                <% for(var i=0;i< blog.Comments.length; i++){ %>
+                <div class="commentBox">
+                    <h3><%= blog.Comments[i].Name %></h3>
+                    <!-- <span>12 August 2020</span> -->
+                    <p>
+                        <%= blog.Comments[i].Text %>
+                    </p>
+                </div>
+                <% } %>
+                <div class="commentBox">
+                    <textarea style="border: none;"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 col-sm-12">
+            <h2>
+                Most Popular Blogs
+            </h2>
+            <div>
+                <% for(var i=0;i< popularBlogs.length; i++){ %>
+                <div class="row" style="display: flex; justify-content: left;padding: 10px auto;">
+                    <div style="width: 45%; ">
+                        <img style="width: 100%; height: auto; vertical-align: middle;" src="<%= popularBlogs[i].ImgLink %>" alt="<%= popularBlogs[i].ImgAltText %>">
+                    </div>
+                    <h5 style="width: 55%;" ><%= popularBlogs[i].Heading %></h5>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('footer.ejs') %>

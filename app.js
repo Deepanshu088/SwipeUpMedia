@@ -14,6 +14,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("Connected to Database :)");
 });
+const Blog = require('./models/blogSchema');
+const Review = require('./models/reviewSchema');
 
 
 const app = express();
@@ -24,6 +26,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/",express.static(__dirname+"/views"));
 app.use("/",express.static(__dirname+"/models"));
 app.use("/",express.static(__dirname+"/public"));
+app.use("/",express.static(__dirname+"/controllers"));
+
+const adminRoute = require("./controllers/adminRoute");
+const blogsRoute = require("./controllers/blogsRoute");
+
 
 const port = process.env.PORT || 3000;
 
@@ -36,20 +43,39 @@ app.use(session({
     }
 }))
 
-const Kitten = require("./models/test.js");
+// Blog.updateMany({},{Views : 1},(err,docs)=>{
+//     if(err){
+//         console.log(err)
+//     }
+//     console.log(docs);
+// });
 
-// const tom  = new Kitten({name : "Tommy"});
-// tom.save();
+router.get("/", async(req,res)=>{
+    var blogs;
+    var reviews;
+    await Blog.find({}).sort({Date : -1}).limit(4).exec((err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        data.forEach((doc)=>{console.log(doc.Date)})
+        blogs = data;
+    })
+    await Review.find({},(err,reviewss)=>{
+        if(err){
+            console.log(err);
+        }
+        reviews = reviewss;
+    })
+    res.render("home",{blogs: blogs, reviews : reviews });
+})
 
-router.get("/",(req,res)=>{
-    res.render("home");
-})
-router.get("/blogs",(req,res)=>{
-    res.render("blogSample");
-})
-router.get("/test",(req,res)=>{
-    res.render("test");
-})
+
+// router.get("/test",(req,res)=>{
+//     res.render("test");
+// })
+
+router.use("/"+process.env.SECTRET_CUSTOM_ROUTE, adminRoute);
+router.use("/blogs/", blogsRoute);
 
 app.use("/",router);
 

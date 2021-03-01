@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Home
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<%- include('adminHeader.ejs')  %>
+
+        <div class="market">
+            <div class="row">
+                <%  for(var i = 0; i < blogs.length; i++) { %>
+                <div class="col-4 col-s-6">
+                    <img src="<%= blogs[i].ImgLink %>" alt="<%= blogs[i].ImgAltText %>">
+                    <div class="blogCard">
+                        <h3><%= blogs[i].Heading %></h3>
+                        <p><%= blogs[i].Description %></p>
+                    </div>
+                    <button>Delete This Blog</button>    
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+</body>
+</html>

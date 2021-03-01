@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Home
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<%- include('adminHeader.ejs')  %>
+        <div class="model">
+            <form method="POST" action="/thisIsACustomRoute/addReview">
+                <h1>Add a new Review</h1>
+                <input placeholder="Enter Name" type="text" name="Name" autofocus>
+                <input placeholder="Enter Image Link" type="text" name="ImgLink">
+                <input placeholder="Enter Image Alt text" type="hidden" name="ImgAltText" value="Client Images" >
+                <input type="date" name="Date">
+                <textarea placeholder="Enter Review" name="Review"></textarea>
+                <span>
+                    Note : Enter <code> &lt;p&gt;&lt;/p&gt;</code> for Next paragraph.
+                </span>
+                <button type="submit">
+                    Add Review
+                </button>
+            </form>
+        </div>
+        <
+
+</body>
+</html>

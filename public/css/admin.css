@@ -1,0 +1,35 @@
+.model{
+    max-width: 700px;
+    height: auto;
+    text-align: center;
+    display: block;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.2);
+}
+.model h1, .model input{
+    margin-bottom:30px;
+    width: 100%;
+    display: block;
+}
+.model textarea{
+    width: 100%;
+    height: 300px;
+}
+.model button{
+    display: block;
+    margin: auto;
+    background-color: lightseagreen;
+}
+
+.market{
+    padding: 0px 20px;
+}
+.blogCard{
+    padding: 10px;
+}
+img{
+    position: relative;
+    width: 100%;
+}
