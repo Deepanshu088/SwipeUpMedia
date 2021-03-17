@@ -53,11 +53,11 @@ app.use(session({
 router.get("/", async(req,res)=>{
     var blogs;
     var reviews;
-    await Blog.find({}).sort({Date : -1}).limit(4).exec((err, data)=>{
+    await Blog.find({}).sort({Date : -1}).limit(10).exec((err, data)=>{
         if(err){
             console.log(err);
         }
-        data.forEach((doc)=>{console.log(doc.Date)})
+        // data.forEach((doc)=>{console.log(doc.Date)})
         blogs = data;
     })
     await Review.find({},(err,reviewss)=>{
@@ -76,6 +76,9 @@ router.get("/", async(req,res)=>{
 
 router.use("/"+process.env.SECTRET_CUSTOM_ROUTE, adminRoute);
 router.use("/blogs/", blogsRoute);
+router.use("/test/",(req,res)=>{
+    res.render("test");
+})
 
 app.use("/",router);
 

@@ -6,7 +6,12 @@
         </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <style>
+            .commentBox input:focus, .commentBox textarea:focus{
+                border: none;
+                text-decoration: none;
+            }
+        </style>
 <%- include ('header.ejs') %>
 
 <div class="line">
@@ -30,7 +35,7 @@
 
                 <!-- for loop starts here -->
                 <% for(var i=0;i< blog.Comments.length; i++){ %>
-                <div class="commentBox">
+                <div class="commentBox" style="padding: 20px;">
                     <h3><%= blog.Comments[i].Name %></h3>
                     <!-- <span>12 August 2020</span> -->
                     <p>
@@ -39,7 +44,9 @@
                 </div>
                 <% } %>
                 <div class="commentBox">
-                    <textarea style="border: none;"></textarea>
+                    <input placeholder="Your Name">
+                    <textarea style="border: none; width: 80%;" placeholder="Join the discussion...."></textarea>
+                    <button> Submit</button>
                 </div>
             </div>
         </div>

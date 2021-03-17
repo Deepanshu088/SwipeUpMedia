@@ -8,20 +8,63 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 <%- include('adminHeader.ejs')  %>
 
-        <div class="market">
-            <div class="row">
+
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">--</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
                 <%  for(var i = 0; i < blogs.length; i++) { %>
-                <div class="col-4 col-s-6">
-                    <img src="<%= blogs[i].ImgLink %>" alt="<%= blogs[i].ImgAltText %>">
-                    <div class="blogCard">
-                        <h3><%= blogs[i].Heading %></h3>
-                        <p><%= blogs[i].Description %></p>
-                    </div>
-                    <button>Delete This Blog</button>    
-                </div>
+                  <tr>
+                    <th scope="row"><%= i+1 %></th>
+                    <td><%= blogs[i].Heading %></td>
+                    <td><%= blogs[i].Date %></td>
+                    <td><a href="#" onclick="deleteBlog( '<%=blogs[i].Heading %>','<%=blogs[i]._id %>' )">Delete This Blog</a></td>
+                  </tr>
+                  
                 <% } %>
+                </tbody>
+              </table>
+        </div>
+        <div id="deleteBlog">
+            <div class="modal-content">
+              <h2>Are you sure to </br> delete this blog :</h2> 
+              <h3 style="text-decoration: underline;"><b id="modal-heading"></b></h3>
+              <div class="close" onclick="document.getElementById('deleteBlog').style.display = 'none'">&#10005</div>
+              
+              <div style="padding: 20px; display: flex;justify-content: space-evenly ; margin-top: 20px;">
+                <button type="button" class="btn btn-dark btn-lg" onclick="document.getElementById('deleteBlog').style.display = 'none'">Cancel</button>
+                <form class="btn btn-danger btn-lg" action="/thisIsACustomRoute/updateBlog" method="POST">
+                  <input type="hidden" id="idOfBlog" name="id" value="">
+                  <button type="submit" class="btn btn-danger">Yes, Delete This Blog</button>
+                </form>
+              </div>
             </div>
         </div>
+<script>
+    var modal = document.getElementById('deleteBlog');
 
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    function deleteBlog(x,y){
+      modal.style.display="block"
+      var heading =  document.getElementById("modal-heading")
+      var id =  document.getElementById("idOfBlog")
+      heading.innerHTML = x;
+      id.value = y;
+    }
+
+</script>
 </body>
 </html>

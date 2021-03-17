@@ -376,3 +376,19 @@ form button{
   font-weight: 1000;
   color: #122f44;
 }
+.commentBox input, .commentBox textarea{
+  text-align: right;
+  display: block; 
+  border: none;
+  border-bottom: 1px solid #122f44;
+  margin-left: auto;
+  padding: 10px;
+}
+.commentBox input:focus, .commentBox textarea:focus{
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+.commentBox textarea::placeholder{
+  text-align: right;
+}

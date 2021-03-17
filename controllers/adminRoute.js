@@ -51,22 +51,29 @@ router.get("/createBlog", (req,res)=>{
 router.get("/updateBlog", async (req,res)=>{
     var blogs;
     if(req.session.access){
-        console.log("before");
         await Blog.find({}, (err,blogss)=>{
             if(err){
                 console.log(err);
             }        
-            console.log("inside");
-            blogs = blogss;
+            
+            res.render("updateBlog",{blogs : blogss}) 
         });
-        console.log("after")
-        res.render("updateBlog",{blogs : blogs}) 
         
     }else{
         res.redirect("/"+process.env.SECTRET_CUSTOM_ROUTE);
     }
 }).post("/updateBlog",(req,res)=>{
+    var id = req.body.id;
+    Blog.findByIdAndDelete(id, function (err, docs) { 
+        if (err){ 
+            console.log(err) 
+        } 
+        else{ 
+            console.log("Deleted : ", docs); 
+        } 
+    });
     res.redirect("/"+process.env.SECTRET_CUSTOM_ROUTE+"/createBlog");
+
 })
 router.get("/addReview",(req,res)=>{
     if(req.session.access){
