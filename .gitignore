@@ -1,1 +1,11 @@
-/node_modules
+# Node build artifacts
+node_modules
+npm-debug.log
+.vscode
+# Local development
+*.dev
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
